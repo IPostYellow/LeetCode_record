@@ -47,3 +47,20 @@ class Solution:
 # p=Solution()
 # print(p.isPalindrome(-121))
 #执行用时 :84 ms, 在所有 python3 提交中击败了70.03%的用户内存消耗 :13.7 MB, 在所有 python3 提交中击败了5.01%的用户
+#考虑到负数肯定不是回文数，那么加一句if判断可以大大提高速度
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x<0:
+            return False
+        else:
+            p=str(x)
+            temp=list(p)
+            temp.reverse()
+            temp=''.join(temp)
+            print(temp)
+            print(p)
+            if temp==p:
+                return True
+            else:
+                return False
+#执行用时 :72 ms, 在所有 python3 提交中击败了90.69%的用户内存消耗 :13.9 MB, 在所有 python3 提交中击败了5.01%的用户
