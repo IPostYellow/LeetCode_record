@@ -41,9 +41,9 @@ class Solution:
         temp=''.join(temp)
         print(temp)
         if temp==p:
-            return 'true'
+            return True
         else:
-            return 'false'
+            return False
 # p=Solution()
 # print(p.isPalindrome(-121))
-#这里自己实测是可以的，可是网站结果不给通过就很烦。还在研究原因中
+#执行用时 :84 ms, 在所有 python3 提交中击败了70.03%的用户内存消耗 :13.7 MB, 在所有 python3 提交中击败了5.01%的用户
