@@ -64,3 +64,18 @@ class Solution:
             else:
                 return False
 #执行用时 :72 ms, 在所有 python3 提交中击败了90.69%的用户内存消耗 :13.9 MB, 在所有 python3 提交中击败了5.01%的用户
+# 不转换成字符串来进行判断
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x < 0:
+            return False
+        else:
+            p = x
+            y = 0
+            while (x != 0):
+                temp = x - (x // 10) * 10
+                x = x // 10
+                y = y * 10 + temp
+            return y == p
+
+# 执行用时 :84 ms, 在所有 python3 提交中击败了69.74%的用户内存消耗 :14.1 MB, 在所有 python3 提交中击败了5.01%的用户
