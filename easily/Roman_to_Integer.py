@@ -87,26 +87,42 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 链接：https://leetcode-cn.com/problems/roman-to-integer
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 '''
-#最low的暴力循环法
+# 最low的暴力循环法
 class Solution:
     def romanToInt(self, s: str) -> int:
-        List=['I','V','X','L','C','D','M']
-        pr_list=[1,5,10,50,100,500,1000]
-        temp=list(s)
-        sum=0
-        T=0#用来判断是否该跳过了
+        List = ['I', 'V', 'X', 'L', 'C', 'D', 'M']
+        pr_list = [1, 5, 10, 50, 100, 500, 1000]
+        temp = list(s)
+        sum = 0
+        T = 0  # 用来判断是否该跳过了
         for i in range(len(temp)):
-            if T==0:
+            if T == 0:
                 print(sum)
-                if i<len(temp)-1:
-                    if List.index(temp[i+1])>List.index(temp[i]):
-                        sum+=pr_list[List.index(temp[i+1])]-pr_list[List.index(temp[i])]
-                        T=1
+                if i < len(temp) - 1:
+                    if List.index(temp[i + 1]) > List.index(temp[i]):
+                        sum += pr_list[List.index(temp[i + 1])] - pr_list[List.index(temp[i])]
+                        T = 1
                     else:
-                        sum+=pr_list[List.index(temp[i])]
-                elif i==len(temp)-1:
-                    sum+=pr_list[List.index(temp[i])]
+                        sum += pr_list[List.index(temp[i])]
+                elif i == len(temp) - 1:
+                    sum += pr_list[List.index(temp[i])]
             else:
-                T-=1
+                T -= 1
         return sum
-#执行用时 :80 ms, 在所有 python3 提交中击败了35.85%的用户内存消耗 :14.1 MB, 在所有 python3 提交中击败了5.25%的用户
+
+
+# 执行用时 :80 ms, 在所有 python3 提交中击败了35.85%的用户内存消耗 :14.1 MB, 在所有 python3 提交中击败了5.25%的用户
+# 改进的字典映射而且灵活使用加减可以减少多次判断
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        roman_dict = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+        sum = 0
+        for i in range(len(s)):
+            if (i < len(s) - 1) and (roman_dict[s[i + 1]] > roman_dict[s[i]]):
+                sum -= roman_dict[s[i]]
+            else:
+                sum += roman_dict[s[i]]
+        return sum
+
+#执行用时 :56 ms, 在所有 python3 提交中击败了93.49%的用户内存消耗 :14.1 MB, 在所有 python3 提交中击败了5.25%的用户
+
